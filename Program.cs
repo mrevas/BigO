@@ -8,33 +8,31 @@ namespace BigO
     {
         public static void Main(string[] args)
         {
-            //Linear: O(n)
+            //Linear: O(n)st
+            //init => linear
             var watch = new Stopwatch();
             watch.Start();
             var arr = InitArray(10000);
             watch.Stop();
             Console.WriteLine($"InitArray() Execution Time: {watch.ElapsedMilliseconds} ms");
 
-            //Constant: O(1)
+            //Constant: O(1)st
+            //get => constant
             watch = new Stopwatch();
             watch.Start();
             var added = AddOneToIndexZero(arr);
             watch.Stop();
             Console.WriteLine($"AddOne() Execution Time: {watch.ElapsedMilliseconds} ms");
 
-            //Logarithmic: O(log(n))
-            watch.Start();
-            var halfed = HalfContinuously(arr);
-            watch.Stop();
-            Console.WriteLine($"HalfedContinuously() Execution Time: {watch.ElapsedMilliseconds} ms");
-
             //LinearO(n)
+            //traverse => O(n)t, O(1)s
             watch.Start();
             var summed = SumOfAll(arr);
             watch.Stop();
             Console.WriteLine($"SumOfAll() Execution Time: {watch.ElapsedMilliseconds} ms");
 
             //Quadratic: O(n^2)
+            //
             watch.Start();
             var paired = PairIntoATable(arr);
             watch.Stop();
@@ -45,19 +43,6 @@ namespace BigO
         private static int AddOneToIndexZero(int[] a)
         {
             return 1 + a[0];
-        }
-        
-        //Logarithmic: O(log(n))
-        private static int HalfContinuously(int[] a)
-        {
-            var length = a.Length;
-            Span<int> arr = a;
-            while (arr.Length > 1)
-            {
-                arr = arr.Slice(0, length / 2);
-                length = arr.Length;
-            }
-            return arr[0] * 9;
         }
 
         //Linear: O(n)
